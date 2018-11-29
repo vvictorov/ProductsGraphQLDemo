@@ -20,6 +20,6 @@ namespace RestaurantGraphQL.Api
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5000/");
+                .UseUrls("http://10.112.32.5:5000/");
     }
 }
