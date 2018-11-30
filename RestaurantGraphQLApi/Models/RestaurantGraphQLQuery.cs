@@ -11,7 +11,7 @@ namespace RestaurantGraphQL.Api.Models
     {
         public RestaurantGraphQLQuery(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            Name = "Queries";
+            Name = "Query";
             
             Field<ListGraphType<ProductType>>(
                 "products",

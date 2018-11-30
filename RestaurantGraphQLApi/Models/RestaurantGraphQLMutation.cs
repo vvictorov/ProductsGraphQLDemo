@@ -8,7 +8,7 @@ namespace RestaurantGraphQL.Api.Models
     {
         public RestaurantGraphQLMutation(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            Name = "Mutations";
+            Name = "Mutation";
             
             Field<ProductType>(
                 "createProduct",
