@@ -1,4 +1,5 @@
 using GraphQL.Types;
+using RestaurantGraphQL.Core.Enums;
 
 namespace RestaurantGraphQL.Api.Models
 {

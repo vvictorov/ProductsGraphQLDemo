@@ -18,7 +18,6 @@ namespace RestaurantGraphQL.Api.Models
                 resolve: context =>
                 {
                     var product = context.GetArgument<Product>("product");
-                    var test = "";
                     return productRepository.Create(product);
                 });
         }

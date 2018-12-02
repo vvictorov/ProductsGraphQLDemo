@@ -8,6 +8,8 @@ namespace RestaurantGraphQL.Api.Models
     {
         public CategoryType(IProductRepository productRepository)
         {
+            Name = "Category";
+
             Field(x => x.Id);
             Field(x => x.Title);
             Field<ListGraphType<ProductType>>("products",

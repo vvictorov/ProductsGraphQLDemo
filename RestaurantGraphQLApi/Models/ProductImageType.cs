@@ -8,6 +8,8 @@ namespace RestaurantGraphQL.Api.Models
     {
         public ProductImageType()
         {
+            Name = "ProductImage";
+
             Field(x => x.Id);
             Field(x => x.Path);
         }
