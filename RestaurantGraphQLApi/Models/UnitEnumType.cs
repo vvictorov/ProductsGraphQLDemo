@@ -12,7 +12,7 @@ namespace RestaurantGraphQL.Api.Models
             Description = "The stock unit measure";
             AddValue("Kg", "Килограми", Core.Enums.UnitEnum.Kg);
             AddValue("G", "Грамове", Core.Enums.UnitEnum.G);
-            AddValue("L", "Килограми", Core.Enums.UnitEnum.L);
+            AddValue("L", "Литри", Core.Enums.UnitEnum.L);
             AddValue("Ml", "Милилитри", Core.Enums.UnitEnum.Ml);
             AddValue("Q", "Броя", Core.Enums.UnitEnum.Q);
         }
