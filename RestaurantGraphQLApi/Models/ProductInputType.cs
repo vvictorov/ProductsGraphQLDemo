@@ -8,10 +8,10 @@ namespace RestaurantGraphQL.Api.Models
         {
             Name = "ProductInput";
 
-            Field<NonNullGraphType<StringGraphType>>("Title");
-            Field<NonNullGraphType<FloatGraphType>>("Stock");
-            Field<NonNullGraphType<UnitEnumType>>("Unit");
-            Field<NonNullGraphType<IntGraphType>>("Category");
+            Field<NonNullGraphType<StringGraphType>>("Title", Description = "Име");
+            Field<NonNullGraphType<FloatGraphType>>("Stock", Description = "Количество");
+            Field<NonNullGraphType<UnitEnumType>>("Unit", Description = "Мярка");
+            Field<NonNullGraphType<IntGraphType>>("Category", Description = "Категория");
         }
     }
 }
