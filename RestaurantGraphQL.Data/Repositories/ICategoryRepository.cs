@@ -8,6 +8,7 @@ namespace RestaurantGraphQL.Data.Repositories
     {
         Task<Category> Get(int id);
         Task<List<Category>> All();
+        List<Category> AllSynchronous();
         Task<Category> Create(Category category);
         Task<Category> Update(int id, Category category);
         Task<bool> Delete(int id);

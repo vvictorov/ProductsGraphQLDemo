@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace RestaurantGraphQL.Data.Repositories
         public async Task<List<Category>> All()
         {
             return await _db.Categories.ToListAsync();
+        }
+
+        public List<Category> AllSynchronous()
+        {
+            return _db.Categories.ToList();
         }
 
         public async Task<Category> Create(Category category)
