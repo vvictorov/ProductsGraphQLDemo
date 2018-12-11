@@ -1,4 +1,5 @@
 ﻿using GraphQL.Types;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Core.Models;
 using RestaurantGraphQL.Data.Repositories;
 

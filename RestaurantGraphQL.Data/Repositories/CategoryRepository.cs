@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Core.Models;
 
 namespace RestaurantGraphQL.Data.Repositories

@@ -8,6 +8,7 @@ namespace RestaurantGraphQL.Api.Models
         {
             Name = "ProductInput";
 
+            Field<IntGraphType>("Id");
             Field<NonNullGraphType<StringGraphType>>("Title", Description = "Име");
             Field<NonNullGraphType<FloatGraphType>>("Stock", Description = "Количество");
             Field<NonNullGraphType<UnitEnumType>>("Unit", Description = "Мярка");

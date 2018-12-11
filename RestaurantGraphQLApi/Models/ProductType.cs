@@ -2,6 +2,7 @@
 using RestaurantGraphQL.Data.Repositories;
 using RestaurantGraphQL.Core.Models;
 using RestaurantGraphQL.Core.Enums;
+using RestaurantGraphQL.Core.Interfaces;
 
 namespace RestaurantGraphQL.Api.Models
 {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Core.Models;
 
 namespace RestaurantGraphQL.Data.Repositories
@@ -33,19 +34,13 @@ namespace RestaurantGraphQL.Data.Repositories
             return product;
         }
 
-        public async Task<Product> Update(int id, Product input)
+        public async Task<Product> Update(Product input)
         {
-            var product = await _db.Products.FindAsync(id);
-
-            if (product == null)
-            {
-                return null;
-            }
-
+            var product = await _db.Products.FindAsync(input.Id);
+            product.UnitEnum = input.UnitEnum;
+            product.CategoryId = input.CategoryId;
             product.Title = input.Title;
             product.Stock = input.Stock;
-            product.Unit = input.Unit;
-            product.CategoryId = input.CategoryId;
 
             _db.Products.Update(product);
             await _db.SaveChangesAsync();

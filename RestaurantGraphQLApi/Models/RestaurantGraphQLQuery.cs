@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GraphQL.Types;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Data.Repositories;
 
 namespace RestaurantGraphQL.Api.Models

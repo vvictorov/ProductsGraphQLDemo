@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using RestaurantGraphQL.Api.Models;
+using RestaurantGraphQL.Application;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Data;
 using RestaurantGraphQL.Data.Repositories;
 
@@ -42,6 +44,8 @@ namespace RestaurantGraphQL.Api
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductImageRepository, ProductImageRepository>();
+
+            services.AddTransient<IProductsAppService, ProductsAppService>();
 
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<ProductType>();

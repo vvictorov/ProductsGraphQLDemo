@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using RestaurantGraphQL.Core.Models;
 
-namespace RestaurantGraphQL.Data.Repositories
+namespace RestaurantGraphQL.Core.Interfaces
 {
     public interface IProductImageRepository
     {

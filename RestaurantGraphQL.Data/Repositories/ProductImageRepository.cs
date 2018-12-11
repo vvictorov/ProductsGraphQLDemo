@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using RestaurantGraphQL.Core.Interfaces;
 using RestaurantGraphQL.Core.Models;
 
 namespace RestaurantGraphQL.Data.Repositories
