@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using GraphiQl;
 using GraphQL;
@@ -34,33 +35,35 @@ namespace RestaurantGraphQL.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ProductsDbContext>(options => 
+            services.AddDbContext<ProductsDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), mySqlOptions =>
                 {
                     mySqlOptions.ServerVersion(new Version(5, 7, 17), ServerType.MySql);
                 })
             );
 
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddTransient<IProductImageRepository, ProductImageRepository>();
-
-            services.AddTransient<IProductsAppService, ProductsAppService>();
-
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
-            services.AddSingleton<ProductType>();
-            services.AddSingleton<CategoryType>();
-            services.AddSingleton<ProductInputType>();
-            services.AddSingleton<UnitEnumType>();
-            services.AddSingleton<ProductImageType>();
-
-            services.AddSingleton<RestaurantGraphQLQuery>();
-            services.AddSingleton<RestaurantGraphQLMutation>();
-
-            var sp = services.BuildServiceProvider();
-            services.AddSingleton<ISchema>(new RestaurantGraphQLSchema(new FuncDependencyResolver(type => sp.GetService(type))));
 
             services.AddCors();
+
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(assembly => assembly.GetName()
+                        .Name
+                        .StartsWith("RestaurantGraphQL")
+                );
+
+            foreach (var assembly in assemblies)
+            {
+                var types = assembly.GetTypes().Where(t => t.IsClass && t.IsPublic && t.Name.Contains("DependencyProvider")); // You can create your own convention here, make sure it won't conflict with other class names that are not meant to be installers
+
+                var installerTypes = types.ToList();
+                if (!installerTypes.Any()) continue;
+
+                foreach (var installerType in installerTypes)
+                {
+                    LoadInstaller(installerType, services);
+                }
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +82,20 @@ namespace RestaurantGraphQL.Api
 
             app.UseGraphiQl();
             app.UseMvc();
+        }
+
+        void LoadInstaller(Type type, IServiceCollection services)
+        {
+            var installMethods = type.GetMethods(BindingFlags.Static | BindingFlags.Public).Where(mi => mi.Name == "RegisterDependencies");
+
+            var installMethod = installMethods.FirstOrDefault();
+
+            if (installMethod == null)
+            {
+                return;
+            }
+
+            installMethod.Invoke(null, new object[] { services });
         }
     }
 }
